@@ -1,0 +1,8 @@
+script.py
+.env
+__init__.py
+
+__pycache__
+.python-version
+
+.parquet
