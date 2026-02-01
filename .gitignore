@@ -5,4 +5,4 @@ __init__.py
 __pycache__
 .python-version
 
-.parquet
+clv_table_data.parquet
