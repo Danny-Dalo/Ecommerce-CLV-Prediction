@@ -1,9 +1,9 @@
 script.py
 .env
-.parquet
+
 __init__.py
 
 __pycache__
 .python-version
 
-/data
+

@@ -57,8 +57,12 @@ GROUP BY customer_id;
 
 -- How much customers have generated 6 months after observation window
 
-CREATE VIEW clv_target AS
-SELECT customer_id, SUM(total_amount) as total_spent
+-- Every transaction made from the beginning of 2022
+CREATE OR REPLACE VIEW clv_target AS
+SELECT customer_id,
+MIN(created_at) as first_purchase_date,     -- The first day of 2022
+MAX(created_at) as last_purchase_date,  -- The last day of prediction window
+SUM(total_amount) as total_spent
 FROM prediction_window 
 GROUP BY customer_id;
 
@@ -95,6 +99,7 @@ FROM clv_data;
 -- customer_features count: 36086
 -- clv_target count: 32423
 -- clv_data count: 36086
+-- clv_date does not contain ANY transactions within the prediction window
 
 
 
