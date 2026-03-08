@@ -59,11 +59,13 @@ GROUP BY customer_id;
 
 -- Every transaction made from the beginning of 2022
 CREATE OR REPLACE VIEW clv_target AS
-SELECT customer_id,
-MIN(created_at) as first_purchase_date,     -- The first day of 2022
-MAX(created_at) as last_purchase_date,  -- The last day of prediction window
-SUM(total_amount) as total_spent
-FROM prediction_window 
+SELECT
+    customer_id,
+    MIN(created_at) AS first_purchase_date,
+    MAX(created_at) AS last_purchase_date,
+    SUM(total_amount) AS total_spent,
+    COUNT(DISTINCT booking_id) AS transaction_count
+FROM prediction_window
 GROUP BY customer_id;
 
 SELECT * FROM clv_target;
